@@ -1,0 +1,41 @@
+{% extends "basic_base.html" %} {% block body_block %}
+<div class="jumbotron">
+    <h1>Welcome to {{ school_detail.name }} page</h1>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        School details
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">School Name: {{ school_detail.name }}</h5>
+        <p class="card-text">
+            Principal: {{ school_detail.principal }}
+            <br />
+            Location: {{ school_detail.location }}
+
+        </p>
+        <p>
+            Student List:
+            <ul>
+                {% for student in school_detail.students.all %}
+                <li>
+                    {{ student.name }}, {{ student.age }} years old.
+                </li>
+                {% endfor %}
+            </ul>
+
+        </p>
+        <div style="display: flex; justify-content: space-between;">
+            <a class="btn btn-secondary" href="{% url 'update' pk=school_detail.pk %}">update info</a>
+        
+            <a class="btn btn-danger" href="{% url 'delete' pk=school_detail.pk %}">Delete</a>
+        </div>
+        
+    </div>
+   
+         
+    
+</div>
+
+{% endblock %}
